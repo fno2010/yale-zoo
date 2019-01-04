@@ -3,6 +3,11 @@ yale-zoo
 
 **The helper of <https://zoo.cs.yale.edu/> for zsh.**
 
+New Features
+------------
+
+- [`mosh`](https://mosh.org/) is used to replace `ssh` if installed.
+
 How to install
 --------------
 
