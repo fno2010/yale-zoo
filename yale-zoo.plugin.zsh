@@ -14,12 +14,18 @@ function sshz() {
         curl -sSL https://zoo.cs.yale.edu/newzoo | pup 'p.caption text{}'
         return
     fi
+
     shift
     CMD=$@
     if [[ $CMD ]]; then
         ssh -l $ZOO_USER $NODE.zoo.cs.yale.edu $CMD
     else
-        ssh -l $ZOO_USER -t $NODE.zoo.cs.yale.edu 'zsh -l'
+        MOSH=$(which mosh)
+        if [[ $? = 0 ]]; then
+            mosh --ssh="ssh -l $ZOO_USER" $NODE.zoo.cs.yale.edu zsh
+        else
+            ssh -l $ZOO_USER -t $NODE.zoo.cs.yale.edu 'zsh -l'
+        fi
     fi
 }
 
